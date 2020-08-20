@@ -1,5 +1,5 @@
 /**
- * @file SDK.js
+ * @file OlenPEPS sdk: src/index.js
  * @summary The OlenPEPS SDK that eases the access to the API
  * @module Client
  * @copyright Copyright © 2019-2020 Olenergies Montreuil France
@@ -363,39 +363,5 @@ const OlenPEPS = {
 
 	postgreSql:	new SDKPostgreSql(),
 }
+
 export default OlenPEPS
-
-
-
-
-
-
-
-
-
-
-
-// regex that checks if value contains digits only
-const digitsOnly = /^\d+$/;
-
-// function to mask digits into US phone format
-function maskUSPhone(phone) {
-	// returning null when getting null, undefined, or an object that is no string as a parameter
-	if (!phone || typeof phone !== 'string') {
-		return null;
-	}
-
-	// returning the untouched value when it contains non-digit chars or when it has a length != 10
-	if (digitsOnly.test(phone) === false || phone.length !== 10) {
-		return phone;
-	}
-
-	// returning the masked value
-	const codeArea = phone.substring(0, 3);
-	const prefix = phone.substring(3, 6);
-	const sufix = phone.substring(6, 10);
-	return `(${codeArea}) ${prefix}-${sufix}`;
-}
-
-export { maskUSPhone }
-
