@@ -10,5 +10,5 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename,
     libraryTarget: 'umd',
-  },
+  }
 }

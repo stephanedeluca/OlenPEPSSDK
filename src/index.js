@@ -362,14 +362,150 @@ const OlenPEPS = {
 	edison:		new APIEdison(),
 
 	postgreSql:	new SDKPostgreSql(),
+
+
+	/**
+	 * @summary Returns the current locale such as en-US or fr-FR
+	 * @param {object} e The forced environement
+	 */
+ 	getEnvLocale(e) {
+		const env = e || process.env
+		const locale = (env.LC_ALL || env.LC_MESSAGES || env.LANG || env.LANGUAGE) || 'en-US'
+		return locale.substring(0, 5).replace('_', '-')
+	},
+
+
+	/**
+	 * @summary Defines the level of verbose one can use to log.
+	 */
+	VERBOSE: {
+		none: 'None',
+		module: 'Module',
+		full: 'Full',
+	},
+
+
+	/**
+	 * @summary Returns the log and logError fnctions to ease developmenet loging.
+	 * @param {string} functionName The name of the function
+	 * @returns Returns the enter, leave, log, error, fetchStart, fetchEnd, fetchError logging functions.
+	 */
+	logFunctions(functionName) {
+		const start = +new Date
+		return {
+			fetchStart: (...args) => {
+				console.log(`~~>${functionName}`, ...args)
+			},
+
+			fetchEnd: (...args) => {
+				const duration = (+new Date - start) / 1e3
+				console.log(`<~~ ${functionName} in ${duration}s`, ...args)
+			},
+
+			fetchError: (err, ...args) => {
+				console.error(`x~~ ${functionName} with *** Error ${err.message || err}`, ...args)
+			},
+
+
+			enter: (...args) => {
+				console.log(`-->${functionName}`, ...args)
+			},
+
+			leave: (...args) => {
+				const duration = (+new Date - start) / 1e3
+				console.log(`<-- ${functionName} in ${duration}s`, ...args)
+			},
+
+			log: (...args) => {
+				console.log(`${functionName}: `, ...args)
+			},
+
+			error: (err, ...args) => {
+				console.error(`x-- ${functionName} with *** Error ${err.message || err}`, ...args)
+			},
+		}
+	},
+
+
+
+	/**
+	 * @summary The JSON pretty printer that support contraction.
+	 * @param {object} json
+	 * @param {integer} maxChars Maximum number of chars to return (positive integer or null)
+	 */
+ 	jsonPrettyPrint(json, maxChars) {
+
+		if (!json) return `${json}`
+
+
+		let text = JSON.stringify(json, null, 2)
+
+		if (!text) return `${text}`
+
+		maxChars = maxChars || 1024
+		const halfMaxChars = (maxChars / 2)
+
+		const count = text.length
+
+		if (count<=maxChars) return text
+
+		const leading = text.substring(0, halfMaxChars)
+		const trailing = text.substring(count-1-halfMaxChars, count)
+
+		return leading + '>=========<' + trailing
+	},
+
+
+	/**
+	* Adds two numbers and returns the result in programmers emoji.
+	* @param {Number} a First number
+	* @param {Number} b Second number
+	*/
+	team: (a, b) => '👨🏻‍💻'.repeat(a + b)
 }
 
 export default OlenPEPS
 
-/**
-* Adds two numbers and returns the result in poop emoji.
-* @param {Number} a First number
-* @param {Number} b Second number
-*/
-export const spongepoop = (a, b) => '💩'.repeat(a + b)
 
+/*
+
+await readInstallationTelemetryFromLocalStorage() // always quicker than the API call
+await readInstallationTelemetryFromOlenPEPS()
+
+
+readInstallationTelemetryFromLocalStorage() {
+	try {
+		const installations = localStorage.getItem('installations')
+		const installation = installation[currentInstallationId]
+
+		refreshUI()
+
+		installationLoadedFromCache = true
+	}
+	catch(err) {
+		installationLoadedFromCache = false
+		refreshUI(`Unable to load from cache, loding from server… (${err.message})`)
+	}
+}
+
+
+const readInstallationTelemetryFromOlenPEPS = async () => {
+	try {
+		await OlenPEPS.api.readInstallation(currentInstallationId)
+		installationLoadedFromCache = false
+		refreshUI()
+		saveInstallationToLocalStoragd()
+	}
+	catch(err) {
+		if (installationLoadedFromCache) {
+			tellUI(`No connection to the server: you are shown the data from cache dated ${lastUpate}`)
+		}
+		else {
+			tellUI(`No connection to the server: retrying in 30secs (${err.message})`)
+		}
+
+		// Retry in 30 secs
+		setTimeout(readInstallationTelemetryFromOlenPEPS, 30000)
+	}
+}
+*/

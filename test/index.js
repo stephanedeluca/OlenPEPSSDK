@@ -21,9 +21,9 @@ describe('Array', () => {
 });
 */
 
-import pooper from '../src';
+import OlenPEPS from '../src';
 describe('Test', () => {
-  it('should poop 3 times', () => {
-    expect(pooper(1, 2)).toBe('💩💩💩');
+  it('should have a team of 3 programmers', () => {
+    expect(OlenPEPS.team(1, 2)).toBe('👨🏻‍💻👨🏻‍💻👨🏻‍💻');
   });
 });
