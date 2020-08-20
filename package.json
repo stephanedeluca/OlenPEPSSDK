@@ -4,17 +4,28 @@
   "description": "The NPM package that exports the OlenPEPS SDK.",
   "main": "build/index.js",
   "scripts": {
+    "build": "babel ./src -d ./lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stephanedeluca/OlenPEPSSDK.git"
   },
-  "keywords": ["npm", "node", "olenpeps", "sdk", "javascript"],
+  "keywords": [
+    "npm",
+    "node",
+    "olenpeps",
+    "sdk",
+    "javascript"
+  ],
   "author": "SDL",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/stephanedeluca/OlenPEPSSDK/issues"
   },
-  "homepage": "https://github.com/stephanedeluca/OlenPEPSSDK#readme"
+  "homepage": "https://github.com/stephanedeluca/OlenPEPSSDK#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  }
 }
