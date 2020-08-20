@@ -1,6 +1,6 @@
 {
   "name": "olenpeps-sdk-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The NPM package that exports the OlenPEPS SDK.",
   "main": "build/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "test": "mocha --require @babel/register",
     "test1": "nyc -x \"**/tests/**\" --reporter=cobertura --reporter=html mocha ./test",
     "test-with-coverage": "nyc --all npm run test",
-    "prepublishOnly": "npm run build"
+    "-prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",

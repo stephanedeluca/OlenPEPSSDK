@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- node
+before_deploy:
+- npm run build
+deploy:
+  provider: npm
+  email: stephane@deluca.biz
+  api_key:
+    secure: On7W/OxgRADTW+R0MrN3A3N/60n0rAcJ4KQmJeaDwqEryeZkramFgTGZU9uoiYrn3YDeHiVDOwGaw15YiYFK9LoKdS0VaTeLjUOuZFYp3RU6eGOplYwZUzSvzZ24M3zKYjVmt0VFJu+F/Zy8uaoUxDnKmY9+F0p0JX6MCQmzM1Klj3G9bXxMadTCCB1R9qvEVvCwv329RPAKntIcKzA1IKMVHakDQak9+zGdqSeuBMSZ96J/QGBsAnGuV6Zy4qU4VrsSgNHyeGSJshHwQgPMoZ0ngunss2AjJhyGw+s9M6eiO1yRlOCXSH8mzN8C+X+L9ryXoc41s4ljjFYN6VXz4mHU/YQizveuV/NQ/uE+HcHRJg5+zDfnzNiyh1cdS1ZB4tdJCOFVy/inv/rJsmcyPmbwEzJBu/Sgen5ykxkW+OQJDhvZosMyMwi4cxs7X/iVH98GxWpKb/C812IAS0gaZY4FTDG1I5tb7hlWnHa8ODujg4kOvpzteLnAxEnb8x47e2CqIoKSdIafaGMCXtSTdODKFSFzeIcfPbHUFn/yC8SmfSz8S8VQABL9DnGkfpBie0E64WrHota1VbiRXC7awS00oivdVJATmvDkmMnINmRPhR3TpPpyTigPniCnAtAb4uBO3ALywQSDWGBZiLhDsGIYlXuODmvBev/L3fiKhco=
+  on:
+    tags: true
+    repo: stephanedeluca/OlenPEPSSDK
+  skip_cleanup: 'true'

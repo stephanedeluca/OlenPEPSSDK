@@ -363,7 +363,7 @@ const OlenPEPS = {
 
 	postgreSql:	new SDKPostgreSql(),
 }
-export default { OlenPEPS }
+export default OlenPEPS
 
 
 
@@ -398,3 +398,4 @@ function maskUSPhone(phone) {
 }
 
 export { maskUSPhone }
+
