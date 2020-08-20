@@ -1,6 +1,6 @@
 {
   "name": "olenpeps-sdk-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The NPM package that exports the OlenPEPS SDK.",
   "main": "build/index.js",
   "scripts": {
