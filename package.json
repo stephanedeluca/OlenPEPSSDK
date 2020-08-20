@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npm run lint && babel --no-comments ./src -d ./lib",
     "lint": "eslint ./src",
-    "test": "mocha --require @babel/register",
+    "-test": "mocha --require @babel/register",
+    "test": "echo \"No test specified\"",
     "test1": "nyc -x \"**/tests/**\" --reporter=cobertura --reporter=html mocha ./test",
     "test-with-coverage": "nyc --all npm run test",
     "-prepublishOnly": "npm run build"
