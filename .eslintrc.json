@@ -1,8 +1,10 @@
 {
     "env": {
-        "browser": true,
+		"browser": true,
+		"node": true,
         "es2020": true,
-        "mocha": true
+		"mocha": true,
+		"jest": true
     },
     "extends": "eslint:recommended",
     "parser": "babel-eslint",

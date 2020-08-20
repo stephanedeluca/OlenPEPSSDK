@@ -1,3 +1,4 @@
+/*
 import * as assert from 'assert';
 import maskUSPhone from '../src/index';
 
@@ -16,5 +17,13 @@ describe('Array', () => {
     it(sample.description, () => {
       assert.equal(maskUSPhone(sample.input), sample.expectedResult);
     });
+  });
+});
+*/
+
+import pooper from '../src';
+describe('Test', () => {
+  it('should poop 3 times', () => {
+    expect(pooper(1, 2)).toBe('💩💩💩');
   });
 });

@@ -365,3 +365,11 @@ const OlenPEPS = {
 }
 
 export default OlenPEPS
+
+/**
+* Adds two numbers and returns the result in poop emoji.
+* @param {Number} a First number
+* @param {Number} b Second number
+*/
+export const spongepoop = (a, b) => '💩'.repeat(a + b)
+

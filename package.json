@@ -1,13 +1,21 @@
 {
   "name": "olenpeps-sdk-js",
   "version": "0.0.4",
-  "description": "The NPM package that exports the OlenPEPS SDK.",
-  "main": "build/index.js",
+  "description": "OlenPEPS: Energy as a Service\nThe NPM package that exports the OlenPEPS SDK.",
+  "-main": "build/index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "build": "npm run lint && babel --no-comments ./src -d ./lib",
-    "lint": "eslint ./src",
+    "-build": "npm run lint && babel --no-comments ./src -d ./lib",
+    "clean": "rimraf lib dist",
+    "build:commonjs": "babel src --out-dir lib",
+    "build:umd": "cross-env FILE_NAME=olenpeps-sdk-js webpack",
+    "build:umd:min": "cross-env NODE_ENV=production npm run build:umd",
+    "build": "npm run clean && npm run build:commonjs && npm run build:umd && npm run build:umd:min",
+    "lint": "eslint ./src --ext .js,.jsx",
+    "test": "jest",
+    "coverage": "npm test -- --coverage",
     "-test": "mocha --require @babel/register",
-    "test": "echo \"No test specified\"",
+    "--test": "echo \"No test specified\"",
     "test1": "nyc -x \"**/tests/**\" --reporter=cobertura --reporter=html mocha ./test",
     "test-with-coverage": "nyc --all npm run test",
     "-prepublishOnly": "npm run build"
@@ -36,10 +44,16 @@
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.0.0",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.3.0",
     "babel-preset-minify": "^0.5.1",
+    "cross-env": "^7.0.2",
     "eslint": "^7.7.0",
+    "jest": "^26.4.1",
     "mocha": "^8.1.1",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "rimraf": "^3.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   },
   "nyc": {
     "reporter": [
