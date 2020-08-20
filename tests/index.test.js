@@ -21,9 +21,10 @@ describe('Array', () => {
 });
 */
 
-import OlenPEPS from '../src';
-describe('Test', () => {
-  it('should have a team of 3 programmers', () => {
-    expect(OlenPEPS.team(1, 2)).toBe('👨🏻‍💻👨🏻‍💻👨🏻‍💻');
-  });
+import OlenPEPS from '../src'
+
+describe('Test OlenPEPS.team(1, 2)', () => {
+	it('should have a team of 3 programmers', () => {
+		expect(OlenPEPS.team(1, 2)).toBe('👨🏻‍💻👨🏻‍💻👨🏻‍💻')
+	});
 });

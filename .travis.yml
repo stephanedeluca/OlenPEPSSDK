@@ -1,8 +1,14 @@
 language: node_js
+
 node_js:
 - node
+
+script:
+  - npm run coverage -- --coverageReporters=text-lcov | coveralls
+
 before_deploy:
 - npm run build
+
 deploy:
   provider: npm
   email: stephane@deluca.biz
