@@ -4,9 +4,12 @@
   "description": "The NPM package that exports the OlenPEPS SDK.",
   "main": "build/index.js",
   "scripts": {
-    "build": "npm run lint && babel ./src -d ./lib",
+    "build": "npm run lint && babel --no-comments ./src -d ./lib",
     "lint": "eslint ./src",
-    "test": "mocha --require babel-core/register"
+    "test": "mocha --require @babel/register",
+    "test1": "nyc -x \"**/tests/**\" --reporter=cobertura --reporter=html mocha ./test",
+    "test-with-coverage": "nyc --all npm run test",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,9 +29,25 @@
   },
   "homepage": "https://github.com/stephanedeluca/OlenPEPSSDK#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-preset-minify": "^0.5.1",
     "eslint": "^7.7.0",
-    "mocha": "^8.1.1"
+    "mocha": "^8.1.1",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "dependencies": {
+    "@babel/register": "^7.10.5",
+    "@babel/runtime": "^7.11.2"
   }
 }
